@@ -3,7 +3,7 @@ services:
   web:
     image: drkimpatrick/tiv-ussd:latest
     ports:
-      - "8000:8000"
+      - "3000:3000"
   nginx:
     image: nginx:latest
     ports:
