@@ -1,17 +1,19 @@
-version: '3'
+version: "3"
 services:
   web:
     image: drkimpatrick/tiv-ussd:latest
     ports:
-      - "3000:3000"
-    environment: 
+      - 3000:3000
+    environment:
       - MONGODB_DATABASE=mongodb://drkimpatrick:Kp15712Kp@docdb-2020-05-24-14-30-14.cluster-cxtdyxpdlgko.eu-central-1.docdb.amazonaws.com:27017/?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false
       - PORT=3000
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - 80:80
+      - 443:443
     volumes:
-      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
     depends_on:
       - web
